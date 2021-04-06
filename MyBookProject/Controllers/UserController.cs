@@ -42,18 +42,44 @@ namespace MyBookProject.Controllers
 
             context.Users.Add(user);
             context.SaveChanges();
+            
+            
 
-            ViewBag.Message = "Thanks For Registering,This Is Your UserId";
+            ViewBag.Message = "Thanks For Registering,This Is Your UserId ,Use It for Login"+" "+user.UserId;
 
             return View();
         }
 
         public ActionResult Login()
         {
+            
             return View();
         }
 
         
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
+        public ActionResult Login(User objUser)
+        {
+            if (ModelState.IsValid)
+            {
+                using (OnlineBookStoreDbEntities db = new OnlineBookStoreDbEntities())
+                {
+                    var obj = db.Users.Where(a => a.UserId.Equals(objUser.UserId) && a.PasswordHash.Equals(objUser.PasswordHash)).FirstOrDefault();
+                    if (obj != null)
+                    {
+                        Session["UserID"] = obj.UserId.ToString();
+                        Session["FirstName"] = obj.FirstName.ToString();
+                        return RedirectToAction("Dashboard", "Home");
+                    }
+                    else
+                    {
+                            ViewBag.Message = "Invalid Username or Password";  
+                    }
+                }
+            }
+            return View();
+        }
 
 
     }
