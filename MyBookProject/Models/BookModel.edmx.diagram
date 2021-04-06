@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7b3a6fdbb6ae45ff82c62e19f0a20e41" Name="Diagram1">
+        <EntityTypeShape EntityType="OnlineBookStoreDbModel.BookInfo" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineBookStoreDbModel.Book" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineBookStoreDbModel.Category" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineBookStoreDbModel.Order" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineBookStoreDbModel.Payment" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineBookStoreDbModel.Status" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineBookStoreDbModel.User" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="OnlineBookStoreDbModel.FK__Orders__BookId__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineBookStoreDbModel.FK__Orders__UserId__2A4B4B5E" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineBookStoreDbModel.FK__Payments__OrderI__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineBookStoreDbModel.FK__Status__OrderId__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineBookStoreDbModel.FK__Payments__UserId__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineBookStoreDbModel.FK__Status__PaymentI__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineBookStoreDbModel.FK__Status__UserId__33D4B598" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
