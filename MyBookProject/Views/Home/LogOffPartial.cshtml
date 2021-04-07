@@ -1,0 +1,25 @@
+﻿@model MyBookProject.Models.User
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "User", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            @*@<li>
+                @Html.ActionLink("Hello " + Model.Email + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>*@
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        
+        <li>@Html.ActionLink("LogOf", "LogOf", "User", routeValues: null, htmlAttributes: new { id = "logoffLink" })</li>
+    </ul>
+}
+
+
+

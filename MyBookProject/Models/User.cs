@@ -25,33 +25,33 @@ namespace MyBookProject.Models
         }
     
         public int UserId { get; set; }
-        [Required(ErrorMessage ="Please Enter the First Name")]
+        //[Required(ErrorMessage ="Please Enter the First Name")]
         [Display(Name ="First Name")]
         public string FirstName { get; set; }
-        [Required(ErrorMessage = "Please Enter the Last Name")]
+       // [Required(ErrorMessage = "Please Enter the Last Name")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Please Enter the DOB")]
+       // [Required(ErrorMessage = "Please Enter the DOB")]
         [Display(Name = "Date Of Birth")]
         public Nullable<System.DateTime> DOB { get; set; }
-        [Required(ErrorMessage = "Please Enter the Gender")]
+      //  [Required(ErrorMessage = "Please Enter the Gender")]
         [Display(Name = "Gender")]
         public string Gender { get; set; }
-        [Required(ErrorMessage = "Please Enter the Contact")]
+       // [Required(ErrorMessage = "Please Enter the Contact")]
         [Display(Name = "Contact No.")]
         public string Contact_Number { get; set; }
-        [Required(ErrorMessage = "Please Enter the First Name")]
+       // [Required(ErrorMessage = "Please Enter the First Name")]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Please Enter the Category")]
+       // [Required(ErrorMessage = "Please Enter the Category")]
         [Display(Name = "User Categry")]
         public string UserCategory { get; set; }
-        [Key]
-        [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
+       // [Key]
+       // [DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public Nullable<int> User_NO { get; set; }
-        [Required(ErrorMessage = "Please Enter the Password")]
+       // [Required(ErrorMessage = "Please Enter the Password")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
