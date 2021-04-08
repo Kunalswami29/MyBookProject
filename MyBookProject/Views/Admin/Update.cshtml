@@ -1,17 +1,17 @@
 ﻿@model MyBookProject.Models.Book
 
 @{
-    ViewBag.Title = "AddBook";
+    ViewBag.Title = "UpdateBook";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AddBook</h2>
+<h2>UpdateBook</h2>
 
-@using (Html.BeginForm("AddBook","Admin",FormMethod.Post)) 
+@using (Html.BeginForm("UpdateBook", "Admin", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <hr/>
-    
+    <hr />
+
     <div class="form-horizontal">
 
         <div class="form-group">
@@ -100,7 +100,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Add" class="btn btn-default" />
+                <input type="submit" value="Update" class="btn btn-default" />
             </div>
         </div>
     </div>

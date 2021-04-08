@@ -5,16 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Register</h2>
+<h2>Welcome To Book Store !! Please Register </h2>
 
 
-@using (Html.BeginForm("Register","User", FormMethod.Post)) 
+@using (Html.BeginForm("Register","User", FormMethod.Post ,new { @class = "bg-priamry" }))
 {
     @Html.AntiForgeryToken()
+    <hr/>
     
 <div class="form-horizontal">
-    <h4>User</h4>
-    <hr />
     <div class="form-group">
         @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -72,7 +71,7 @@
                 {
                       new SelectListItem { Text = "Customer", Value = "Customer", Selected=true},
                       new SelectListItem { Text = "Admin", Value = "Admin"},
-                      
+
                 },"select the category")
       
                 @Html.ValidationMessageFor(model => model.UserCategory, "", new { @class = "text-danger" })
@@ -91,7 +90,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Register" class="btn btn-default" />
+                <input type="submit" value="Register" class="btn btn-primary" />
             </div>
         </div>
     </div>

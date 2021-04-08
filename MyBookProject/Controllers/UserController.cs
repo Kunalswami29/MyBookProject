@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MyBookProject.Models;
+using Microsoft.AspNet.Identity;
+using System.Net;
+using Microsoft.Owin.Security;
 
 namespace MyBookProject.Controllers
 {
+   
     public class UserController : Controller
     {
         private OnlineBookStoreDbEntities context;
@@ -50,6 +52,12 @@ namespace MyBookProject.Controllers
             return View();
         }
 
+        public ActionResult Dashboard()
+        {
+
+
+            return View("Dashboard");
+        }
         public ActionResult Login()
         {
             
@@ -58,6 +66,7 @@ namespace MyBookProject.Controllers
 
         
         [HttpPost]
+        
         [ValidateAntiForgeryToken()]
         public ActionResult Login(User objUser)
         {
@@ -70,16 +79,29 @@ namespace MyBookProject.Controllers
                     {
                         Session["UserID"] = obj.UserId.ToString();
                         Session["FirstName"] = obj.FirstName.ToString();
-                        return RedirectToAction("Dashboard", "Home");
+                        return RedirectToAction("Dashboard", "User");
                     }
                     else
                     {
-                            ViewBag.Message = "Invalid Username or Password";  
+                            ViewBag.Message = "Invalid Username/Password !!";  
                     }
                 }
             }
             return View();
         }
+
+
+        public ActionResult LogOut()
+        {
+            
+            string UserId = (string)Session["UserId"];
+            Session.Clear();
+            return RedirectToAction("Login", "User");
+
+        }
+
+        
+       
 
 
     }
