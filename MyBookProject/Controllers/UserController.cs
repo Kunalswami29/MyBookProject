@@ -34,6 +34,8 @@ namespace MyBookProject.Controllers
             return View();
         }
 
+        //for Registering the User
+
         [HttpPost]
         public ActionResult Register(User user)
         {
@@ -47,17 +49,20 @@ namespace MyBookProject.Controllers
             
             
 
-            ViewBag.Message = "Thanks For Registering,This Is Your UserId ,Use It for Login"+" "+user.UserId;
+            ViewBag.Message = "Thanks For Registering,This Is Your UserId"+ " " +user.UserId+ " " + "Use It for Login";
 
             return View();
         }
 
+        // for Accessing the Dashboard 
         public ActionResult Dashboard()
         {
 
 
             return View("Dashboard");
         }
+
+        //For Accessing the Login Page
         public ActionResult Login()
         {
             
@@ -65,6 +70,7 @@ namespace MyBookProject.Controllers
         }
 
         
+        // For Authenticating the user
         [HttpPost]
         
         [ValidateAntiForgeryToken()]
@@ -79,7 +85,11 @@ namespace MyBookProject.Controllers
                     {
                         Session["UserID"] = obj.UserId.ToString();
                         Session["FirstName"] = obj.FirstName.ToString();
-                        return RedirectToAction("Dashboard", "User");
+                        if(obj.UserCategory == "Admin")
+                        {
+                            return RedirectToAction("Dashboard", "User");
+                        }
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
@@ -91,6 +101,7 @@ namespace MyBookProject.Controllers
         }
 
 
+        // For Ending the Session And LogOut
         public ActionResult LogOut()
         {
             

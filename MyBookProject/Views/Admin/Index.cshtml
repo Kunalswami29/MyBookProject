@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MyBookProject.Models.Book>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Welcome To Book Store!!</h2>
+
+<div class="container row p-0 m-0 ">
+    <div class="col-9">
+        <h2 class="text-info "> Book List </h2>
+
+    </div>
+    <div class="col-3">
+        <a class="btn form-control btn-info text-white ">Create New Book</a>
+
+    </div>
+    <div class="col-12 border p-3  m-3">
+       
+            @if (!Model.Any())
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>
+                            Book Name
+                        </th>
+                        <th>
+                            Author Name
+                        </th>
+                        <th>
+
+                        </th>
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink(item.BookName, "Update","Admin", new { id = item.BookId}, null)
+                            </td>
+                         
+                            <td>
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                                <a class="btn btn-success btn-sm">Edit</a>
+
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            }
+            else
+            {
+                <p>No Books Available !!</p>
+            }
+
+       
+
+    </div>
+
+</div>
+

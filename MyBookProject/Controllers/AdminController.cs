@@ -27,63 +27,82 @@ namespace MyBookProject.Controllers
 
 
         // get : HttpGet 
+        public ActionResult Index()
+        {
+            var books = context.Books.ToList();
 
+            return View(books);
+        }
+
+       
+
+        // to render the addBook PAge
         public ActionResult AddBook()
         {
             return View();
         }
 
 
-     
+        
+
+        // to add Book to DB
         [HttpPost]
-        public ActionResult AddBook(Book book)
+        public ActionResult Save (Book book)
         {
-            if (!ModelState.IsValid)
+            if (book.BookId == 0)
             {
-                return HttpNotFound();
+                context.Books.Add(book);
+            }
+            else
+            {
+                var bookInDb = context.Books.SingleOrDefault(b => b.BookId == book.BookId);
+
+                bookInDb.BookName = book.BookName;
+                bookInDb.Book_Auth = book.Book_Auth;
+                bookInDb.Book_des = book.Book_des;
+                bookInDb.Book_Type = book.Book_Type;
+                bookInDb.Book_Cat = book.Book_Cat;
+                bookInDb.Book_Opt = book.Book_Opt;
+                bookInDb.Discount = book.Discount;
+                bookInDb.Rate = book.Rate;
             }
 
-            context.Books.Add(book);
             context.SaveChanges();
 
             ViewBag.Message = "Book Added Successfully !!";
 
-            return View();
+            return View("AddBook");
         }
 
 
-       
-        public ActionResult Update()
+       // to render details to the Update Page 
+        public ActionResult Update(int? bookId)
         {
-            return View();
+            var book = context.Books.SingleOrDefault(c => c.BookId == bookId);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View("Update");
         }
 
-        [HttpPost, ActionName("Update")]
+        // to  update the details in Db
+
+       /* [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdatePost(int? id)
+        public ActionResult UpdateBook(Book book)
         {
-            if (id == null)
+            if (!ModelState.IsValid)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var BookToUpdate = context.Books.Find(id);
-            if (TryUpdateModel(BookToUpdate))
-            {
-                try
-                {
-                    context.SaveChanges();
-                    ViewBag.Message = "Book Updated Successfully !!";
-                    return ViewBag;
-                }
-                catch (DataException)
-                {
-                    //Log the error (uncomment dex variable name and add a line here to write a log.
-                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
-                }
-            }
+
+            
+
 
             return View("AddBook");
-        }
+        }*/
 
 
         [HttpPost]

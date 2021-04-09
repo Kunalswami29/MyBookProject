@@ -7,7 +7,7 @@
 
 <h2>UpdateBook</h2>
 
-@using (Html.BeginForm("UpdateBook", "Admin", FormMethod.Post))
+@using (Html.BeginForm("Save", "Admin", FormMethod.Post, new {id = Model.BookId }))
 {
     @Html.AntiForgeryToken()
     <hr />
