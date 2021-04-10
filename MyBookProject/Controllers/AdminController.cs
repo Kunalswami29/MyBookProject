@@ -76,15 +76,16 @@ namespace MyBookProject.Controllers
 
 
        // to render details to the Update Page 
-        public ActionResult Update(int? bookId)
+        public ActionResult Update(int? id)
         {
-            var book = context.Books.SingleOrDefault(c => c.BookId == bookId);
+            var book = context.Books.Where(c => c.BookId == id).FirstOrDefault();
             if (book == null)
             {
                 return HttpNotFound();
             }
 
             return View("Update");
+
         }
 
         // to  update the details in Db
@@ -105,9 +106,8 @@ namespace MyBookProject.Controllers
         }*/
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)
+        
+        public ActionResult Delete(int? id)
         {
             try
             {

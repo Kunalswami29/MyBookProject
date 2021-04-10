@@ -340,6 +340,19 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\21.jpg" />
+    <Content Include="images\22.jpg" />
+    <Content Include="images\23.jpg" />
+    <Content Include="images\ashish1.jpg" />
+    <Content Include="images\Biography.jpg" />
+    <Content Include="images\drama1.jpg" />
+    <Content Include="images\Fiction.jpg" />
+    <Content Include="images\Kunal.jpg" />
+    <Content Include="images\login.jpg" />
+    <Content Include="images\non fictio.jpg" />
+    <Content Include="images\Novel.jpg" />
+    <Content Include="images\o-STACK-OF-BOOKS-facebook.jpg" />
+    <Content Include="images\poetry.jpg" />
     <Content Include="Models\BookModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BookModel.edmx</DependentUpon>
@@ -395,7 +408,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

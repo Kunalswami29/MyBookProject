@@ -11,6 +11,7 @@ namespace MyBookProject.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Book
     {
@@ -21,14 +22,35 @@ namespace MyBookProject.Models
         }
     
         public int BookId { get; set; }
+       
+        [Display(Name ="Book Name")]
         public string BookName { get; set; }
+
+        
+        [Display(Name = "Book Code")]
         public string BookCode { get; set; }
+        
+        [Display(Name = "Book Description")]
         public string Book_des { get; set; }
+        
+        [Display(Name = "Author Name")]
         public string Book_Auth { get; set; }
+       
+        [Display(Name = "Book Category")]
         public string Book_Cat { get; set; }
+
+        
+        [Display(Name = "Book Type")]
         public string Book_Type { get; set; }
+
+        
+        [Display(Name = "Book Option")]
         public string Book_Opt { get; set; }
+       
+        [Display(Name = "Discount")]
         public string Discount { get; set; }
+        
+        [Display(Name = "Rate")]
         public string Rate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

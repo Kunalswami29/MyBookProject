@@ -11,6 +11,7 @@ namespace MyBookProject.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class User
     {
@@ -21,16 +22,27 @@ namespace MyBookProject.Models
             this.Payments = new HashSet<Payment>();
             this.Status = new HashSet<Status>();
         }
-    
+        
         public int UserId { get; set; }
+        [Display(Name ="First Name")]
         public string FirstName { get; set; }
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        [Display(Name = "Date Of Birth")]
         public Nullable<System.DateTime> DOB { get; set; }
+        [Display(Name = "Gender")]
         public string Gender { get; set; }
+        [Display(Name = "Contact No")]
         public string Contact_Number { get; set; }
+        [Display(Name = "Email")]
+        [EmailAddress]
         public string Email { get; set; }
+        [Display(Name = "Category")]
         public string UserCategory { get; set; }
+        [Display(Name = "User No")]
         public Nullable<int> User_NO { get; set; }
+        [Display(Name = "Password")]
+        [Required]
         public string PasswordHash { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

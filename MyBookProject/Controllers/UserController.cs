@@ -49,7 +49,7 @@ namespace MyBookProject.Controllers
             
             
 
-            ViewBag.Message = "Thanks For Registering,This Is Your UserId"+ " " +user.UserId+ " " + "Use It for Login";
+            ViewBag.Message = "Thanks For Registering,This Is Your UserId"+ " " + user.UserId + " " + "Use It for Login";
 
             return View();
         }
@@ -87,7 +87,7 @@ namespace MyBookProject.Controllers
                         Session["FirstName"] = obj.FirstName.ToString();
                         if(obj.UserCategory == "Admin")
                         {
-                            return RedirectToAction("Dashboard", "User");
+                            return RedirectToAction("Index", "Admin");
                         }
                         return RedirectToAction("Index", "Home");
                     }

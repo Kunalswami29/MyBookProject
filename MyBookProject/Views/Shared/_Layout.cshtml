@@ -9,7 +9,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body style="        background-image: linear-gradient(277deg,#1a1a2f,white);">
     <div class="navbar navbar-inverse navbar-dark bg-primary navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -25,19 +25,19 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                <div style="float:right;">
                     @if (Session["UserId"] == null)
                     {
-                        <div class="reg">@Html.ActionLink("Register", "Register", "User")</div>
-                        <div class="leg">@Html.ActionLink("Login", "Login", "User")</div>
+                        <li class="reg">@Html.ActionLink("Register", "Register", "User")</li>
+                        <li class="leg">@Html.ActionLink("Login", "Login", "User")</li>
                     }
                     else
                     {
-                        <div>@Html.ActionLink("Logouut", "LogOut", "User")</div>
-                        <div>@Html.ActionLink("username", "Login", "User")</div>
+                        <li>@Html.ActionLink("LogOut", "LogOut", "User")</li>
 
                     }
+                </ul>
+                <div style="float:right;">
+
 
 
                 </div>

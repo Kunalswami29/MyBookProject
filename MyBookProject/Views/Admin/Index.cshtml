@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<MyBookProject.Models.Book>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,13 +12,13 @@
         <h2 class="text-info "> Book List </h2>
 
     </div>
-    <div class="col-3">
-        <a class="btn form-control btn-info text-white ">Create New Book</a>
+    <div class="col-4">
+        @Html.ActionLink("Create New Book","AddBook","Admin", new { @class= " btn btn-primary text-white"})
 
     </div>
     <div class="col-12 border p-3  m-3">
        
-            @if (!Model.Any())
+            @if (Model.Any())
             {
                 <table class="table table-striped border">
                     <tr class="table-secondary">
@@ -34,22 +35,24 @@
                     </tr>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.ActionLink(item.BookName, "Update","Admin", new { id = item.BookId}, null)
-                            </td>
-                         
-                            <td>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                                <a class="btn btn-success btn-sm">Edit</a>
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.BookName, "Update", "Admin", new { id = item.BookId })
+                    </td>
+                    <td>
+                        <p>@item.Book_Auth</p>
+                    </td>
 
-                            </td>
-                        </tr>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", "Admin", new { id = item.BookId})
+
+                    </td>
+                </tr>
                     }
 
                 </table>
-            }
-            else
+           }
+           else
             {
                 <p>No Books Available !!</p>
             }
