@@ -6,6 +6,7 @@ using System.Net;
 using System.Web.Mvc;
 using MyBookProject.Models;
 using System.Data;
+using System.Data.Entity;
 
 namespace MyBookProject.Controllers
 {
@@ -26,7 +27,7 @@ namespace MyBookProject.Controllers
         
 
 
-        // get : HttpGet 
+        // get : HttpGet  to show all books
         public ActionResult Index()
         {
             var books = context.Books.ToList();
@@ -45,66 +46,60 @@ namespace MyBookProject.Controllers
 
         
 
-        // to add Book to DB
+        // to update/Add Book to DB
         [HttpPost]
         public ActionResult Save (Book book)
-        {
-            if (book.BookId == 0)
-            {
-                context.Books.Add(book);
-            }
-            else
-            {
-                var bookInDb = context.Books.SingleOrDefault(b => b.BookId == book.BookId);
-
-                bookInDb.BookName = book.BookName;
-                bookInDb.Book_Auth = book.Book_Auth;
-                bookInDb.Book_des = book.Book_des;
-                bookInDb.Book_Type = book.Book_Type;
-                bookInDb.Book_Cat = book.Book_Cat;
-                bookInDb.Book_Opt = book.Book_Opt;
-                bookInDb.Discount = book.Discount;
-                bookInDb.Rate = book.Rate;
-            }
-
-            context.SaveChanges();
-
-            ViewBag.Message = "Book Added Successfully !!";
-
-            return View("AddBook");
-        }
-
-
-       // to render details to the Update Page 
-        public ActionResult Update(int? id)
-        {
-            var book = context.Books.Where(c => c.BookId == id).FirstOrDefault();
-            if (book == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View("Update");
-
-        }
-
-        // to  update the details in Db
-
-       /* [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult UpdateBook(Book book)
         {
             if (!ModelState.IsValid)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            
+            if (book.BookId == 0)
+            {
+                context.Books.Add(book);
+                ViewBag.Message = "Book Added Successfully";
+            }
+            else
+            {
+                var bookInDb = context.Books.Single(m => m.BookId == book.BookId);
+                if (bookInDb != null)
+                {
+                    bookInDb.BookName = book.BookName;
+                    bookInDb.BookCode = book.BookCode;
+                    bookInDb.Book_Auth = book.Book_Auth;
+                    bookInDb.Book_Cat = book.Book_Cat;
+                    bookInDb.Book_des = book.Book_des;
+                    bookInDb.Book_Opt = book.Book_Opt;
+                    bookInDb.Book_Type = book.Book_Type;
+                    bookInDb.Discount = book.Discount;
+                    bookInDb.Rate = book.Rate;
+                }
+
+            }
+           
+            context.SaveChanges();
+
+          
+
+            return RedirectToAction("Index", "Admin");
+        }
 
 
-            return View("AddBook");
-        }*/
+       // to render details to the Update Page 
+        public ActionResult Update(int? id)
+        {
+            var book = context.Books.SingleOrDefault(c => c.BookId == id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
 
+            return View(book);
+
+        }
+
+       
 
         
         public ActionResult Delete(int? id)
