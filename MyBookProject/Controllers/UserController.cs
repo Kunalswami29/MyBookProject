@@ -31,7 +31,13 @@ namespace MyBookProject.Controllers
 
         public ActionResult Register()
         {
-            return View();
+            if (Session["UserId"] == null)
+            {
+                return View();
+            }
+
+            return RedirectToAction("Index", "Home");
+           
         }
 
         //for Registering the User
@@ -65,8 +71,13 @@ namespace MyBookProject.Controllers
         //For Accessing the Login Page
         public ActionResult Login()
         {
-            
-            return View();
+            if (Session["UserId"] == null)
+            {
+                return View();
+            }
+
+            return RedirectToAction("Index", "Home");
+
         }
 
         

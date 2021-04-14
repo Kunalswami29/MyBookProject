@@ -26,15 +26,18 @@ namespace MyBookProject.Controllers
             context.Dispose();
         }
 
-        
+
 
 
         // get : HttpGet  to show all books
         public ActionResult Index()
         {
+
             var books = context.Books.ToList();
 
             return View(books);
+
+
         }
 
        
