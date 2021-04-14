@@ -35,10 +35,10 @@
                     </tr>
                     @foreach (var item in Model)
                     {
-                <tr>
-                    <td>
-                        @Html.ActionLink(item.BookName, "Update", "Admin", new { id = item.BookId },null)
-                    </td>
+                 <tr>
+                     <td>
+                          @Html.ActionLink(item.BookName, "Update", "Admin", new { id = item.BookId },null)
+                     </td>
                     <td>
                         <p>@item.Book_Auth</p>
                     </td>

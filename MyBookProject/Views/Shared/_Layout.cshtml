@@ -9,7 +9,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body style="        background-image: linear-gradient(277deg,#1a1a2f,white);">
+<body style="background-image: linear-gradient(90deg,#7e9672,#8d7e5a);">
     <div class="navbar navbar-inverse navbar-dark bg-primary navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -32,19 +32,15 @@
                     }
                     else
                     {
-                        <li>@Html.ActionLink("LogOut", "LogOut", "User")</li>
+                        <li style="float:right">@Html.ActionLink("LogOut", "LogOut", "User")</li>
 
                     }
                 </ul>
-                <div style="float:right;">
-
-
-
-                </div>
+                
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content " style="background-image: linear-gradient(95deg,#bbcfac,#ae9253)">
         @RenderBody()
         <hr />
         <footer>

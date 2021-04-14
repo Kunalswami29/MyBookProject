@@ -22,34 +22,39 @@ namespace MyBookProject.Models
         }
     
         public int BookId { get; set; }
-       
+
+        [Required]
         [Display(Name ="Book Name")]
         public string BookName { get; set; }
 
-        
+        [Required]
         [Display(Name = "Book Code")]
         public string BookCode { get; set; }
-        
+
+
+        [Required]
         [Display(Name = "Book Description")]
         public string Book_des { get; set; }
         
         [Display(Name = "Author Name")]
+        [Required]
         public string Book_Auth { get; set; }
-       
+
+        [Required]
         [Display(Name = "Book Category")]
         public string Book_Cat { get; set; }
 
-        
+        [Required]
         [Display(Name = "Book Type")]
         public string Book_Type { get; set; }
 
-        
+        [Required]
         [Display(Name = "Book Option")]
         public string Book_Opt { get; set; }
-       
+        [Required]
         [Display(Name = "Discount")]
         public string Discount { get; set; }
-        
+        [Required]
         [Display(Name = "Rate")]
         public string Rate { get; set; }
     
