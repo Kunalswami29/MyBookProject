@@ -13,50 +13,50 @@
 
     </div>
     <div class="col-4">
-        @Html.ActionLink("Create New Book","AddBook","Admin", new { @class= " btn btn-primary text-white"} )
+        @Html.ActionLink("Create New Book", "AddBook", "Admin", new { @class = " btn btn-primary text-white" })
 
     </div>
     <div class="col-12 border p-3  m-3">
-       
-            @if (Model.Any())
-            {
-                <table class="table table-striped border">
-                    <tr class="table-secondary">
-                        <th>
-                            Book Name
-                        </th>
-                        <th>
-                            Author Name
-                        </th>
-                        <th>
 
-                        </th>
+        @if (Model.Any())
+        {
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>
+                        Book Name
+                    </th>
+                    <th>
+                        Author Name
+                    </th>
+                    <th>
 
-                    </tr>
-                    @foreach (var item in Model)
-                    {
-                 <tr>
-                     <td>
-                          @Html.ActionLink(item.BookName, "Update", "Admin", new { id = item.BookId },null)
-                     </td>
-                    <td>
-                        <p>@item.Book_Auth</p>
-                    </td>
+                    </th>
 
-                    <td>
-                        @Html.ActionLink("Delete", "Delete", "Admin", new { id = item.BookId},null)
-                    </td>
                 </tr>
-                    }
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.BookName, "Update", "Admin", new { id = item.BookId }, null)
+                        </td>
+                        <td>
+                            <p>@item.Book_Auth</p>
+                        </td>
 
-                </table>
-           }
-           else
-            {
-                <p>No Books Available !!</p>
-            }
+                        <td>
+                            @Html.ActionLink("Delete", "Delete", "Admin", new { id = item.BookId }, null)
+                        </td>
+                    </tr>
+                }
 
-       
+            </table>
+        }
+        else
+        {
+            <p>No Books Available !!</p>
+        }
+
+
 
     </div>
 
