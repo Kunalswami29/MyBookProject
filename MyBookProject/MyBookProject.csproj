@@ -287,6 +287,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\HelpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -322,7 +323,13 @@
     <Compile Include="Models\Payment.cs">
       <DependentUpon>BookModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ResetPassword.cs">
+      <DependentUpon>BookModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Status.cs">
+      <DependentUpon>BookModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Ticket.cs">
       <DependentUpon>BookModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -348,14 +355,21 @@
     <Content Include="images\book5.jpg" />
     <Content Include="images\book6.jpg" />
     <Content Include="images\book7.jpg" />
+    <Content Include="images\Comics.JPG" />
     <Content Include="images\drama1.jpg" />
-    <Content Include="images\Fiction.jpg" />
+    <Content Include="images\Fiction %281%29.jpg" />
+    <Content Include="images\History.JPG" />
+    <Content Include="images\Image1.jpg" />
+    <Content Include="images\Image2.jpg" />
+    <Content Include="images\image3.jpg" />
     <Content Include="images\Kunal.jpg" />
     <Content Include="images\login.jpg" />
+    <Content Include="images\logo.JPG" />
     <Content Include="images\non fictio.jpg" />
-    <Content Include="images\Novel.jpg" />
+    <Content Include="images\Novel %281%29.jpg" />
     <Content Include="images\o-STACK-OF-BOOKS-facebook.jpg" />
     <Content Include="images\poetry.jpg" />
+    <Content Include="images\Sci-fi.JPG" />
     <Content Include="Models\BookModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BookModel.edmx</DependentUpon>
@@ -386,6 +400,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\User\Dashboard.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\ResetPassword.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -399,10 +417,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\User\Register.cshtml" />
-    <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\User\Dashboard.cshtml" />
     <Content Include="Views\Home\LogOffPartial.cshtml" />
     <Content Include="Views\Admin\AddBook.cshtml" />
     <Content Include="Views\Admin\Update.cshtml" />
@@ -410,6 +425,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\ResourceListPartial.cshtml" />
     <Content Include="Views\Home\ResourceList.cshtml" />
+    <Content Include="Views\User\Forgot.cshtml" />
+    <Content Include="Views\Help\ticket.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

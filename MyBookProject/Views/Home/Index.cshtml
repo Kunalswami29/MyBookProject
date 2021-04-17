@@ -5,9 +5,13 @@
 
 @Styles.Render("~/Content/Site.css")
 
+
 <div class="p-3 mb-2 bg-warning text-dark">
     <div class="container col-lg-12">
-        <h2 align="center">Book Store</h2>
+        <br>
+        @Html.ActionLink("ResourceList", "ResourceList", "Home", new { @class = "btn btn-success text-white p-3 md-2" })
+        <br />
+
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -19,18 +23,20 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" style="width:100%">
                 <div class="item active">
-                    <img src="~/images/book5.jpg" style="width:100%; height:auto; " />
+
+                    <img src="~/images/image1.jpg" style="width:100%;height:300px;" />
                 </div>
 
                 <div class="item">
-                    <img src="~/images/book6.jpg" style=" width: 100%; height:auto;" />
+                    <img src="~/images/image2.jpg" style="width:100%;height:300px;" />
                 </div>
 
                 <div class="item">
-
-                    <img src="~/images/book7.jpg" style="width: 100%; height: auto; " />
+                    <img src="~/images/image3.jpg" style="width:100%;height:300px;" />
                 </div>
             </div>
+
+
 
             <!-- Left and right controls -->
             <a class="left carousel-control" href="#myCarousel" data-slide="prev">
@@ -41,9 +47,78 @@
                 <span class="glyphicon glyphicon-chevron-right"></span>
                 <span class="sr-only">Next</span>
             </a>
-     </div>
-        
-        @Html.ActionLink("ResourceList","ResourceList","Home", new { @class = "btn btn-primary text-white"})
-        @* Cards of books(Just like a Dashboard) *@
+        </div>
+        <hr>
+    </div>
+</div>
 
- </div>
+<hr>
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <a href="">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Fictions</div>
+                        <div class="panel-body"><img src="~/images/Fiction (1).jpg" style="width:400px;height:200px;" class="img-responsive" alt="Image"></div>
+                    </div>
+
+                    <a />
+            </div>
+            <div class="col-sm-4">
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Comics</div>
+                    <div class="panel-body"><img src="~/images/Comics.jpg" style="width:300px;height:200px; class="img-responsive" alt="Image"></div>
+
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+                <a href="">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Novels</div>
+                        <div class="panel-body"><img src="~/images/Novel (1).jpg" style="width:300px;height:200px; class="img-responsive" alt="Image"></div>
+                    </div>
+                    <a />
+            </div>
+        </div>
+    </div><br>
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <a href="">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">History Books</div>
+                        <div class="panel-body"><img src="~/images/History.jpg" style="width:300px;height:200px; class="img-responsive" alt="Image"></div>
+
+                    </div>
+                    <a />
+            </div>
+            <div class="col-sm-4">
+                <a href="">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Sci-Fi</div>
+                        <div class="panel-body"><img src="~/images/Sci-fi.jpg" style="width:300px;height:200px; class="img-responsive" alt="Image"></div>
+
+                    </div>
+                    <a />
+            </div>
+
+            <div class="col-sm-4">
+                <a href="">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">Horrer Books</div>
+                        <div class="panel-body"><img src="~/images/Fiction (1).jpg" style="width:300px;height:200px; class="img-responsive" alt="Image"></div>
+
+                    </div>
+                    <a />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* Cards of books(Just like a Dashboard) *@

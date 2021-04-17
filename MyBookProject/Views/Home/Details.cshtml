@@ -1,0 +1,83 @@
+﻿@model MyBookProject.Models.Book
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2><center>@Model.BookName</center></h2>
+
+<div>
+    <hr />
+    <div style="margin:10px 0px 30px 100px;">
+        <img src="~/images/Novel (1).jpg" alt="bookImage" width="300px" height="300px"/>
+    </div>
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookName)
+        </dt>
+
+        <dd style="color:black; font-family:sans-serif; font-size:20px;">
+            @Html.DisplayFor(model => model.BookName)
+        </dd>
+
+       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_des)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book_des)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_Auth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book_Auth)
+        </dd>
+
+       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Book_Opt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Book_Opt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    
+    @Html.ActionLink("Back to List", "ResourceList","Home")
+</p>

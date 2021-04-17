@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OnlineBookStoreDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineBookStoreDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BookInfo">
           <Key>
             <PropertyRef Name="BCatId" />
@@ -25,7 +25,7 @@
           <Property Name="Book_Type" Type="nvarchar(max)" />
           <Property Name="Book_Opt" Type="nvarchar(max)" />
           <Property Name="Discount" Type="nvarchar(max)" />
-          <Property Name="Rate" Type="nvarchar(max)" />
+          <Property Name="Rate" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -56,6 +56,15 @@
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="CardNum" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="ResetPassword">
+          <Key>
+            <PropertyRef Name="ResetId" />
+          </Key>
+          <Property Name="ResetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="secretAns" Type="varchar" MaxLength="250" />
+          <Property Name="NewPassword" Type="varchar(max)" />
+          <Property Name="ConfirmPassword" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Status">
           <Key>
             <PropertyRef Name="StatusId" />
@@ -64,6 +73,17 @@
           <Property Name="OrderId" Type="int" />
           <Property Name="status_Info" Type="nvarchar(max)" />
           <Property Name="PaymentId" Type="int" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="Tickets">
+          <Key>
+            <PropertyRef Name="TicketId" />
+          </Key>
+          <Property Name="TicketId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="status" Type="nvarchar" MaxLength="30" />
           <Property Name="UserId" Type="int" />
         </EntityType>
         <EntityType Name="Users">
@@ -78,7 +98,7 @@
           <Property Name="Contact_Number" Type="nvarchar(max)" />
           <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="UserCategory" Type="nvarchar(max)" />
-          <Property Name="User_NO" Type="int" />
+          <Property Name="Secret" Type="nvarchar(max)" />
           <Property Name="PasswordHash" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK__Orders__BookId__2B3F6F97">
@@ -169,13 +189,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Tickets__UserId__4BAC3F29">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Tickets" Type="Self.Tickets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Tickets">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="OnlineBookStoreDbModelStoreContainer">
           <EntitySet Name="BookInfo" EntityType="Self.BookInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResetPassword" EntityType="Self.ResetPassword" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tickets" EntityType="Self.Tickets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Orders__BookId__2B3F6F97" Association="Self.FK__Orders__BookId__2B3F6F97">
             <End Role="Books" EntitySet="Books" />
@@ -205,9 +239,12 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Status" EntitySet="Status" />
           </AssociationSet>
+          <AssociationSet Name="FK__Tickets__UserId__4BAC3F29" Association="Self.FK__Tickets__UserId__4BAC3F29">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Tickets" EntitySet="Tickets" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OnlineBookStoreDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -231,7 +268,7 @@
           <Property Name="Book_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Book_Opt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Discount" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Rate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__BookId__2B3F6F97" FromRole="Books" ToRole="Orders" />
         </EntityType>
         <EntityType Name="Category">
@@ -295,11 +332,12 @@
           <Property Name="Contact_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UserCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="User_NO" Type="Int32" />
+          <Property Name="Secret" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__UserId__2A4B4B5E" FromRole="Users" ToRole="Orders" />
           <NavigationProperty Name="Payments" Relationship="Self.FK__Payments__UserId__2E1BDC42" FromRole="Users" ToRole="Payments" />
           <NavigationProperty Name="Status" Relationship="Self.FK__Status__UserId__33D4B598" FromRole="Users" ToRole="Status" />
+          <NavigationProperty Name="Tickets" Relationship="OnlineBookStoreDbModel.FK__Tickets__UserId__4BAC3F29" FromRole="User" ToRole="Ticket" />
         </EntityType>
         <Association Name="FK__Orders__BookId__2B3F6F97">
           <End Role="Books" Type="Self.Book" Multiplicity="0..1">
@@ -425,7 +463,46 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Status" EntitySet="Status" />
           </AssociationSet>
+          <EntitySet Name="ResetPasswords" EntityType="OnlineBookStoreDbModel.ResetPassword" />
+          <EntitySet Name="Tickets" EntityType="OnlineBookStoreDbModel.Ticket" />
+          <AssociationSet Name="FK__Tickets__UserId__4BAC3F29" Association="OnlineBookStoreDbModel.FK__Tickets__UserId__4BAC3F29">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ResetPassword">
+          <Key>
+            <PropertyRef Name="ResetId" />
+          </Key>
+          <Property Name="ResetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="secretAns" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NewPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ConfirmPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="TicketId" />
+          </Key>
+          <Property Name="TicketId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="OnlineBookStoreDbModel.FK__Tickets__UserId__4BAC3F29" FromRole="Ticket" ToRole="User" />
+        </EntityType>
+        <Association Name="FK__Tickets__UserId__4BAC3F29">
+          <End Type="OnlineBookStoreDbModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="OnlineBookStoreDbModel.Ticket" Role="Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -502,6 +579,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="OnlineBookStoreDbModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Secret" ColumnName="Secret" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -510,8 +588,29 @@
                 <ScalarProperty Name="Contact_Number" ColumnName="Contact_Number" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserCategory" ColumnName="UserCategory" />
-                <ScalarProperty Name="User_NO" ColumnName="User_NO" />
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResetPasswords">
+            <EntityTypeMapping TypeName="OnlineBookStoreDbModel.ResetPassword">
+              <MappingFragment StoreEntitySet="ResetPassword">
+                <ScalarProperty Name="ConfirmPassword" ColumnName="ConfirmPassword" />
+                <ScalarProperty Name="NewPassword" ColumnName="NewPassword" />
+                <ScalarProperty Name="secretAns" ColumnName="secretAns" />
+                <ScalarProperty Name="ResetId" ColumnName="ResetId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tickets">
+            <EntityTypeMapping TypeName="OnlineBookStoreDbModel.Ticket">
+              <MappingFragment StoreEntitySet="Tickets">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="TicketId" ColumnName="TicketId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

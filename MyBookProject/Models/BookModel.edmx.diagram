@@ -19,6 +19,9 @@
         <AssociationConnector Association="OnlineBookStoreDbModel.FK__Payments__UserId__2E1BDC42" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineBookStoreDbModel.FK__Status__PaymentI__32E0915F" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineBookStoreDbModel.FK__Status__UserId__33D4B598" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="OnlineBookStoreDbModel.ResetPassword" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="OnlineBookStoreDbModel.Ticket" Width="1.5" PointX="3" PointY="8.625" />
+        <AssociationConnector Association="OnlineBookStoreDbModel.FK__Tickets__UserId__4BAC3F29" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

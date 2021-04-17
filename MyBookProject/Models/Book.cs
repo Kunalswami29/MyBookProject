@@ -22,45 +22,36 @@ namespace MyBookProject.Models
         }
     
         public int BookId { get; set; }
-
-        [Required]
         [Display(Name ="Book Name")]
+        [Required]
+
         public string BookName { get; set; }
-
-        [Required]
         [Display(Name = "Book Code")]
-        public string BookCode { get; set; }
-
-
         [Required]
+        public string BookCode { get; set; }
         [Display(Name = "Book Description")]
+        [Required]
         public string Book_des { get; set; }
-        
         [Display(Name = "Author Name")]
         [Required]
         public string Book_Auth { get; set; }
-
-        [Required]
         [Display(Name = "Book Category")]
+        [Required]
         public string Book_Cat { get; set; }
-
-        [Required]
         [Display(Name = "Book Type")]
+        [Required]
         public string Book_Type { get; set; }
-
+        [Display(Name = "Buying Option")]
         [Required]
-        [Display(Name = "Book Option")]
         public string Book_Opt { get; set; }
-        [Required]
         [Display(Name = "Discount")]
-        public string Discount { get; set; }
         [Required]
-        [Display(Name = "Rate")]
+        public string Discount { get; set; }
+        [Display(Name = "Price")]
+        [Required]
         public string Rate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
-
-
     }
 }

@@ -3,8 +3,9 @@ using System.Web;
 using System.Web.Mvc;
 using MyBookProject.Models;
 using Microsoft.AspNet.Identity;
-using System.Net;
-using Microsoft.Owin.Security;
+using System.Configuration;
+using System.Data.SqlClient;
+
 
 namespace MyBookProject.Controllers
 {
@@ -96,6 +97,7 @@ namespace MyBookProject.Controllers
                     {
                         Session["UserID"] = obj.UserId.ToString();
                         Session["FirstName"] = obj.FirstName.ToString();
+                        Session["UserCategory"] = obj.UserCategory.ToString();
                         if(obj.UserCategory == "Admin")
                         {
                             return RedirectToAction("Index", "Admin");
@@ -122,7 +124,38 @@ namespace MyBookProject.Controllers
 
         }
 
+       
+        public ActionResult ResetPassword()
+        {
+            return View();
+        }
+
         
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
+        public ActionResult ResetPassword(User use)
+        {
+
+            var user = context.Users.Single(f => f.Email == use.Email && f.Contact_Number == use.Contact_Number && f.Secret == use.Secret);
+
+            if(user == null)
+            {
+                 ViewBag.Message = "Wrong Credentials Please register or try again";
+                return View();
+            }
+
+            string v = user.UserId.ToString();
+
+            ViewBag.Message = "This is your UserId"+ " " + v; 
+          
+
+            return View();
+        }
+
+        public ActionResult Forgot()
+        {
+            return View();
+        }
        
 
 

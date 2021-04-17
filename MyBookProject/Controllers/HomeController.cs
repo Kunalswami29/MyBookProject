@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyBookProject.Models;
@@ -35,6 +36,20 @@ namespace MyBookProject.Controllers
         public ActionResult Contact()
         {
             return View();
+        }
+
+        public ActionResult Details (int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Book book = context.Books.Find(id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+            return View(book);
         }
 
         public ActionResult ResourceList(string sortOrder, string searchString)

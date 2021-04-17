@@ -12,10 +12,12 @@
         <h2 class="text-info "> Book List </h2>
 
     </div>
-    <div class="col-4">
-        @Html.ActionLink("Create New Book", "AddBook", "Admin", new { @class = " btn btn-primary text-white" })
+    <div class="col-4" style="float:right; margin-top:-40px;">
 
-    </div>
+
+        @Html.ActionLink("Add New Book", "AddBook", "Admin", new { @class = " btn btn-success text-white" })
+
+    </div><br>
     <div class="col-12 border p-3  m-3">
 
         @if (Model.Any())
@@ -44,7 +46,10 @@
                         </td>
 
                         <td>
-                            @Html.ActionLink("Delete", "Delete", "Admin", new { id = item.BookId }, null)
+                            <div class="btn btn-warning" style="">
+                                @Html.ActionLink("Delete", "Delete", "Admin", new { id = item.BookId }, null)
+                            </div>
+                           
                         </td>
                     </tr>
                 }

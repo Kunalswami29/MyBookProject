@@ -1,18 +1,15 @@
 ﻿@model MyBookProject.Models.User
 @{
     ViewBag.Title = "Login";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    @*Layout = "~/Views/Shared/_Layout.cshtml";*@
 }
 
-<h2>Welcome Please Login !!</h2>
+<h2 style="text-align:center;">Please Login, To Explore Our New Collections !!</h2>
 <hr />
 
 @using (Html.BeginForm("Login", "User", FormMethod.Post))
 {
-<div class="panel panel-body panel-info text-white" style="
-        background-image: url('../../images/o-STACK-OF-BOOKS-facebook.jpg');
-        background-size: cover;
-    ">
+<div class="panel panel-body panel-default" style="background-image:linear-gradient(45deg,#bebed1,#dec2ae)">
 
 
     @Html.AntiForgeryToken()
@@ -41,13 +38,11 @@
 <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
         <input type="submit" value="Log In" class="btn btn-success" />
-        <input type="reset" value="Reset" class="btn btn-danger" />
+        @Html.ActionLink("Reset UserId/Password", "ResetPassword", "User", new { @class = "btn btn-danger" })
     </div>
 
 
 </div>
-
-    <hr />
 
 }
 

@@ -32,5 +32,7 @@ namespace MyBookProject.Models
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<ResetPassword> ResetPasswords { get; set; }
+        public virtual DbSet<Ticket> Tickets { get; set; }
     }
 }

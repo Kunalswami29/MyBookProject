@@ -1,0 +1,59 @@
+﻿@model MyBookProject.Models.ResetPassword
+
+@{
+    ViewBag.Title = "Forgot";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2><center>Recover Your Password !!</center></h2>
+
+
+@using (Html.BeginForm("Forgot", "User", FormMethod.Post))
+{
+<div class="panel panel-body panel-default" style="background-image:linear-gradient(45deg,#bebed1,#dec2ae)">
+
+
+    @Html.AntiForgeryToken()
+
+  
+
+
+
+    <div class="form-group" style="font-family:sans-serif; font-size:15px;">
+        @Html.LabelFor(model => model.NewPassword, htmlAttributes: new { @class = "control-label col-md-2 " })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.NewPassword, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NewPassword, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <div class="form-group" style="font-family:sans-serif; font-size:15px;">
+        @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2 " })
+        <div class="col-md-10">
+            @Html.PasswordFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+
+    <div class="form-group" style=" font-family:sans-serif; font-size:15px;">
+        @Html.LabelFor(model => model.secretAns, htmlAttributes: new { @class = "control-label col-md-2 " })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.secretAns, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.secretAns, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <h4>@ViewBag.Message</h4>
+</div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Submit" class="btn btn-success" />
+            <input type="reset" value="clear" class="btn btn-success" />
+        </div>
+    </div>
+    @Html.ActionLink("Back to ForgotId ", "ResetPassword", "User", new { @class = "btn btn-primary" })
+
+    <hr />
+
+}
