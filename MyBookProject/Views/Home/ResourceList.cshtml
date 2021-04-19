@@ -2,13 +2,14 @@
 @{
     ViewBag.Title = "Resource List";
 }
-<div class="col-12 border p-3  m-4">
+<div class="col-12 border p-3 m-4 ">
     @using (Html.BeginForm())
     {
-        <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size:25px;">
-            Find by name: @Html.TextBox("SearchString")
-            <input type="submit" class="btn btn-success" value="Search" />
-        </p>
+    <p style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size:18px;">
+        Find By Name: @Html.TextBox("SearchString")
+        <input  type="submit" class="btn btn-success" value="Search" />
+        <input  type="reset" class="btn btn-success" value="Reset" /> 
+    </p>
 
     }
 
@@ -31,9 +32,15 @@
                             </div>
                             <div class="right-block" style="padding: 0 20px;">
                                 <div>
-                                    <h3 style=color:black;>@Html.ActionLink(item.BookName,"Details","Home",new {id = item.BookId},null)</h3>
+                                    <h3 style=color:black;>@Html.ActionLink(item.BookName, "Details", "Home", new { id = item.BookId }, null)</h3>
                                     <div style=" color: #030d3a; font-weight:500;"> @item.Book_Auth </div>
                                     <div style="color: #270606; font-size:20px;">Rs @item.Rate</div>
+                                </div>
+                                <div class="btn btn-success text">
+                                    @Html.ActionLink("Add To Cart", "Order", "Home", new { id = item.BookId })
+                                </div>
+                                <div class="btn btn-warning " style="color:black">
+                                    @Html.ActionLink("Buy Now", "Payment", "User", new { id = item.BookId })
                                 </div>
                             </div>
                         </div>

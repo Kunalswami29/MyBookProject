@@ -11,7 +11,7 @@ namespace MyBookProject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,8 +23,12 @@ namespace MyBookProject.Models
     
         public int OrderId { get; set; }
         public Nullable<int> UserId { get; set; }
+        [Required]
         public string Address { get; set; }
+        [Required]
         public Nullable<int> Quantity { get; set; }
+        [Required]
+        [Display(Name ="Buying Option")]
         public string Type { get; set; }
         public Nullable<int> BookId { get; set; }
         public Nullable<System.DateTime> DueDate { get; set; }

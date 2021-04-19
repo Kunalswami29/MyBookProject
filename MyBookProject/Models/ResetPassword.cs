@@ -22,7 +22,7 @@ namespace MyBookProject.Models
         [Display(Name ="New Password")]
         [Required]
         public string NewPassword { get; set; }
-        [Display(Name = "New Password")]
+        [Display(Name = "Confirm Password")]
         [Required]
         public string ConfirmPassword { get; set; }
     }

@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MyBookProject.Models.Ticket>
+@{
+    ViewBag.Title = "Ticket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ticket</h2>
+
+<div class="col-12 border p-3 m-4 ">
+   
+
+    @if (Model.Any())
+    {
+        <table class="table table-striped border">
+            <tr class="table-secondary">
+                <th>Book</th>
+
+                <th>TicketId</th>
+
+                <th>UserName</th>
+
+                <th>Description</th>
+                <th>Status</th>
+                <th>Remove/Update</th>
+
+
+            </tr>
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>
+                <div class="left-block">
+
+                    <img src="~/images/Novel (1).jpg" alt="BookImage" width="100" height="100" />  @* Image change *@
+                </div>
+            </td>
+            <td>
+                <p style="margin-top:17px;">@item.TicketId</p>
+            </td>
+            <td>
+                <p style="margin-top:17px;">@item.FirstName</p>
+            </td>
+            <td>
+                <p style="margin-top:17px; font-weight:bold;">@item.Description</p>
+            </td>
+            <td>
+                @if (item.status =="yes" || item.status == null)
+                {
+                    <p style="margin-top:17px; font-weight:bold; color:brown">Pending</p>
+                }
+                else
+                {
+                    <p style="margin-top:17px; font-weight:bold; color:green">@item.status</p>
+                }
+
+            </td>
+
+            <td>
+                <div class="btn btn-warning" style="margin-top:17px;">
+                    @Html.ActionLink("Delete", "Remove", "Admin", new { id = item.TicketId }, null)
+                </div>
+                <div class="btn btn-default bg-info" style="margin-top:17px; ">
+                    @Html.ActionLink("Update", "Edit", "Admin", new { id = item.TicketId }, null)
+                </div>
+
+            </td>
+
+
+
+
+        </tr>
+            }
+
+        </table>
+    }
+    else
+    {
+        <p>No Books Available !!</p>
+    }

@@ -1,0 +1,67 @@
+﻿@model MyBookProject.Models.Payment
+
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Payment</h2>
+
+
+
+<h2 style="text-align:center;">Pay and get your order delivered  </h2>
+
+<hr />
+<h4 style="text-align:center;"> Pay faster for all your shopping needs with debit card | Zero payment failures  </h4>
+<br>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+@using (Html.BeginForm("Payment","Home",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Accepted Cards</label>
+            <div class="col-md-10">
+                <i class="fa fa-cc-visa" style="color:navy;"></i>
+                <i class="fa fa-credit-card" style="color:blue;"></i>
+                <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                <i class="fa fa-cc-paypal" style="color:black;"></i>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CardNum, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CardNum, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CardNum, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Pay & Place Your Order " class="btn btn-primary " />
+            </div>
+        </div>
+
+        <h3>@ViewBag.Message</h3>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back To Home Page ", "Index", "Home");
+</div>

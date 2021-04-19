@@ -61,7 +61,7 @@ namespace MyBookProject.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 book = book.Where(b => b.BookName.Contains(searchString)
-                                       || b.Book_Auth.Contains(searchString));
+                                       || b.Book_Auth.Contains(searchString) || b.Book_Cat.Contains(searchString));
             }
             switch (sortOrder)
             {
@@ -78,7 +78,62 @@ namespace MyBookProject.Controllers
 
             return View(book.ToList());
         }
-       
-        
+
+        public ActionResult Order()
+        {
+            if(Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Order(Order order)
+        {
+            if (!ModelState.IsValid)
+            {
+                return HttpNotFound();
+            }
+
+            if(order.OrderId == 0)
+            {
+                order.DueDate = DateTime.Today.AddDays(15);
+                context.Orders.Add(order);
+                ViewBag.Message = "Proceed to Checkout Please !!";
+                context.SaveChanges();
+            }
+
+
+
+            return View();
+
+        }
+
+        public ActionResult Payment()
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Payment(Payment payment)
+        {
+            if(payment.PaymentId == 0)
+            {
+                context.Payments.Add(payment);
+                ViewBag.Message = "Thanks Your Order Has Been Placed Successfully!!";
+                context.SaveChanges();
+            }
+
+            return View();
+        }
+
+
+
     }
 }

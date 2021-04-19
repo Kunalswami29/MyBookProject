@@ -29,18 +29,38 @@ namespace MyBookProject.Controllers
 
 
 
-        // get : HttpGet  to show all books
-        public ActionResult Index()
+        // get : HttpGet  to show all books in sorted or searched form
+        public ActionResult Index(string sortOrder, string searchString)
         {
+            
+                ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
 
-            var books = context.Books.ToList();
+                var book = from b in context.Books
+                           select b;
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    book = book.Where(b => b.BookName.Contains(searchString)
+                                           || b.Book_Auth.Contains(searchString) || b.Book_Cat.Contains(searchString));
+                }
+                switch (sortOrder)
+                {
+                    case "name_desc":
+                        book = book.OrderByDescending(b => b.Book_Auth);
+                        break;
 
-            return View(books);
+                    default:
+                        book = book.OrderBy(b => b.BookName);
+                        break;
+                }
 
 
+
+                return View(book.ToList());
         }
 
-       
+
+
+         
 
         // to render the addBook PAge
         public ActionResult AddBook()
@@ -80,6 +100,7 @@ namespace MyBookProject.Controllers
                     bookInDb.Discount = book.Discount;
                     bookInDb.Rate = book.Rate;
                 }
+                ViewBag.Message = "Book Updated Successfully !!";
 
             }
            
@@ -106,7 +127,7 @@ namespace MyBookProject.Controllers
 
        
 
-        
+        // For Deleting the User
         public ActionResult Delete(int? id)
         {
             try
@@ -117,10 +138,74 @@ namespace MyBookProject.Controllers
             }
             catch (DataException)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
-                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+                
+                return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Ticket()
+        {
+            
+
+            var ticket = context.Tickets.ToList();
+
+            return View(ticket);
+        }
+
+        public ActionResult Remove(int? id)
+        {
+            try
+            {
+                Ticket ticket = context.Tickets.Find(id);
+                context.Tickets.Remove(ticket);
+                context.SaveChanges();
+            }
+            catch (DataException)
+            {
+
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int? id)
+        {
+
+            var ticket= context.Tickets.SingleOrDefault(c => c.TicketId == id);
+            if (ticket == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(ticket);
+        }
+
+        public ActionResult Resolve(Ticket ticket)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Error");
+            }
+
+            if(ticket.TicketId != 0)
+            {
+                var ticketInDb = context.Tickets.Single(t => t.TicketId == ticket.TicketId);
+
+                ticketInDb.UserId = ticket.UserId;
+                ticketInDb.FirstName = ticket.FirstName;
+                ticketInDb.Description = ticket.Description;
+                ticketInDb.Date = ticket.Date;
+                ticketInDb.status = ticket.status;
+
+             
+            }
+
+
+            context.SaveChanges();
+
+            return RedirectToAction("Index");
+
         }
     }
 }

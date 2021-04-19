@@ -314,6 +314,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BookModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\Category.cs">
       <DependentUpon>BookModel.tt</DependentUpon>
     </Compile>
@@ -426,8 +427,12 @@
     <Content Include="Views\Home\ResourceListPartial.cshtml" />
     <Content Include="Views\Home\ResourceList.cshtml" />
     <Content Include="Views\User\Forgot.cshtml" />
-    <Content Include="Views\Help\ticket.cshtml" />
+    <Content Include="Views\Help\Index.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\Order.cshtml" />
+    <Content Include="Views\Home\Payment.cshtml" />
+    <Content Include="Views\Admin\Ticket.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

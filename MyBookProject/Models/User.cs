@@ -27,13 +27,17 @@ namespace MyBookProject.Models
         public int UserId { get; set; }
        
         [Display(Name ="First Name")]
+   
         public string FirstName { get; set; }
         
         [Display(Name = "Last Name")]
+        
         public string LastName { get; set; }
         
         [Display(Name = "Date Of Birth")]
+        
         public Nullable<System.DateTime> DOB { get; set; }
+        
         
         [Display(Name = "Gender")]
         public string Gender { get; set; }
@@ -52,6 +56,8 @@ namespace MyBookProject.Models
         public string Secret { get; set; }
         [Required]
         [Display(Name = "Password")]
+        
+        
         public string PasswordHash { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

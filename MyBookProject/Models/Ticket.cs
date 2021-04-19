@@ -11,14 +11,23 @@ namespace MyBookProject.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Ticket
     {
         public int TicketId { get; set; }
+        [Required]
+        [Display(Name ="User Name")]
         public string FirstName { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
+        [Required]
+        [Display(Name ="Write Your Query")]
         public string Description { get; set; }
+        [Required]
+        [Display(Name ="Want To Raise It?")]
         public string status { get; set; }
+        [Required]
+        [Display(Name ="User Id")]
         public Nullable<int> UserId { get; set; }
     
         public virtual User User { get; set; }

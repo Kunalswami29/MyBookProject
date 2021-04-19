@@ -11,6 +11,7 @@ namespace MyBookProject.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Payment
     {
@@ -23,7 +24,12 @@ namespace MyBookProject.Models
         public int PaymentId { get; set; }
         public Nullable<int> UserId { get; set; }
         public Nullable<int> OrderId { get; set; }
+        [Required]
         public string Name { get; set; }
+
+        [Required]
+        [Display(Name="Card Number")]
+       
         public string CardNum { get; set; }
     
         public virtual Order Order { get; set; }

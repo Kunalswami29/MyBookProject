@@ -1,0 +1,72 @@
+﻿@model MyBookProject.Models.Order
+
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Contact Details !! </h2>
+
+@using (Html.BeginForm("Order", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10" style="padding: 4px 16px;">
+            Rent @Html.RadioButtonFor(model => model.Type, "Rent", new { htmlAttributes = new { @class = "form-control" }, name = "type", onclick = "fun();" })
+            Buy @Html.RadioButtonFor(model => model.Type, "Buy", new { htmlAttributes = new { @class = "form-control" }, name = "type", onclick = "fun();" })
+            @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group" style=" font-family:sans-serif; font-size:18px;">
+        @Html.LabelFor(model => model.DueDate, htmlAttributes: new { @class = "control-label col-md-2 " })
+        <div class="col-md-10">
+           
+            @Html.TextBox("date", DateTime.Today.AddDays(15).ToShortDateString())
+            @Html.ValidationMessageFor(model => model.DueDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <h3>@ViewBag.Message</h3>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Submit" class="btn btn-default" />
+        </div>
+    </div>
+
+
+    @Html.ActionLink("Proceed To Checkout", "Payment", "User", new { @class = "btn btn-primary" })
+
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ResourceList","Home")
+</div>
